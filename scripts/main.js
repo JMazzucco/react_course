@@ -1,6 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var Navigation = ReactRouter.Navigation;
+
 /*
 	App
 */
@@ -52,14 +57,25 @@ var StorePicker = React.createClass({
 	render: function() {
 		return (
 			<form className="store-selector">
-		{/*ddfd*/}
 				<h2>Please Enter A Store</h2>
 				<input type="text" ref="storeId" required />
 				<input type="submit"/>
 			</form>
 			)
-
 	}
 });
 
-ReactDOM.render(<App/>, document.querySelector('#main'))
+/*
+Routes
+*/
+
+var routes = (
+	<Router>
+		<Route path="/" component={StorePicker}/>
+
+		<Route path="/store/:storeId" component={App}/>
+	</Router>
+);
+
+
+ReactDOM.render(routes, document.querySelector('#main'))
