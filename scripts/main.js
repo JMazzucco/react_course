@@ -22,6 +22,11 @@ var App = React.createClass({
 			order : {}
 		}
 	},
+	addFish : function (fish) {
+		var timestamp = (new Date()).getTime();
+		this.state.fishes['fish-' + timestamp] = fish;
+		this.setState({ fishes : this.state.fishes });
+	},
 	render : function(){
 		return (
 			<div className="catch-of-the-day">
@@ -29,7 +34,7 @@ var App = React.createClass({
 					<Header tagline="Fresh Seafood Market"/>
 				</div>
 				<Order/>
-				<Inventory/>
+				<Inventory addFish={this.addFish}/>
 			</div>
 		)
 	}
@@ -49,7 +54,8 @@ var AddFishForm = React.createClass({
 			desc : this.refs.desc.value,
 			image : this.refs.image.value
 		}
-			console.log(fish);
+	this.props.addFish(fish);
+	this.refs.fishFrom.reset();
 	},
 
 	render : function() {
@@ -95,7 +101,7 @@ var Inventory = React.createClass({
 		return (
 			<div>
 				<h2>Inventory</h2>
-				<AddFishForm />
+				<AddFishForm {...this.props}/>
 			</div>
 		)
 	}
