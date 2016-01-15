@@ -11,6 +11,9 @@ var createBrowserHistory = require('history/lib/createBrowserHistory');
 
 var h = require('./helpers');
 
+var Rebase = require('re-base');
+// declare reference to firebase database
+var base = Rebase.createClass('https://scorching-inferno-1708.firebaseio.com/');
 /*
 	App
 */
