@@ -25,6 +25,12 @@ var App = React.createClass({
 			order : {}
 		}
 	},
+	componentDidMount : function() {
+		base.syncState(this.props.params.storeId + '/fishes', {
+			context : this,
+			state : 'fishes'
+		});
+	},
 	addFish : function (fish) {
 		var timestamp = (new Date()).getTime();
 		this.state.fishes['fish-' + timestamp] = fish;
