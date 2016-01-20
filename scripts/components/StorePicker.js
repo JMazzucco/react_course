@@ -28,6 +28,6 @@ class StorePicker extends React.component{
 	}
 };
 
-reactMixin.onClass(StorePicker, Navigation);
+reactMixin.onClass(StorePicker, History);
 
 export default StorePicker;
