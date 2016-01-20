@@ -33,9 +33,7 @@ class Inventory extends React.component{
 			</div>
 		)
 	}
-
 };
-
 
 Inventory.propTypes = {
 	addFish : React.PropTypes.func.isRequired,
