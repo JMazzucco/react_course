@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigation } from 'react-router';
+import { History } from 'react-router';
 import h from '../helpers';
 // StorePicker
 // This will let us make <StorePicker/>
