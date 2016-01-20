@@ -5,8 +5,7 @@ var CSSTransitionGroup = require('react-addons-css-transition-group');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
-var Navigation = ReactRouter.Navigation;
-var History = ReactRouter.History
+var History = ReactRouter.History;
 
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 
@@ -16,9 +15,13 @@ var Rebase = require('re-base');
 // declare reference to firebase database
 var base = Rebase.createClass('https://scorching-inferno-1708.firebaseio.com/');
 
-
-
 var Catalyst = require('react-catalyst');
+
+/*import components*/
+
+import NotFound from './components/NotFound';
+import StorePicker from './components/StorePicker';
+import Fish from './components/Fish';
 /*
 	App
 */
@@ -98,33 +101,7 @@ var App = React.createClass({
 	}
 });
 
-/*
-	Fish
-	<Fish />
-*/
 
-var Fish = React.createClass({
-	onButtonClick : function(){
-		console.log("going to add a fish: ", this.props.index);
-		this.props.addToOrder(this.props.index);
-	},
-	render: function() {
-		var details = this.props.details;
-		var isAvailable = (details.status === 'available' ? true : false);
-		var buttonText = (isAvailable ? 'Add To Order' : 'Sold Out!');
-		return (
-			<li className="menu-fish">
-				<img src={details.image} alt={details.name} />
-				<h3 className="fish-name">
-					{details.name}
-					<span className="price">{h.formatPrice(details.price)}</span>
-				</h3>
-				<p>{details.desc}</p>
-				<button disabled={!isAvailable} onClick={this.onButtonClick}>{buttonText}</button>
-			</li>
-		)
-	}
-})
 
 /* Add Fish Form
 	<AddFishForm />
@@ -280,39 +257,13 @@ var Inventory = React.createClass({
 		removeFish : React.PropTypes.func.isRequired
 	}
 });
-// StorePicker
-// This will let us make <StorePicker/>
 
-var StorePicker = React.createClass({
-	mixins : [History],
-	goToStore : function(event) {
-		event.preventDefault();
-		console.log('Ya Submitted it!');
-		var storeId = this.refs.storeId.value;
-		this.history.pushState(null, '/store/' + storeId);
-		console.log(this);
-	},
-
-	render: function() {
-		return (
-			<form className="store-selector" onSubmit={this.goToStore}>
-				<h2>Please Enter A Store</h2>
-				<input type="text" ref="storeId" defaultValue={h.getFunName()} required />
-				<input type="submit"/>
-			</form>
-			)
-	}
-});
 
 /*
 Routes
 */
 
-var NotFound = React.createClass({
-	render : function() {
-		return <h1>404 Not Found</h1>
-	}
-});
+
 
 var routes = (
 	<Router history={createBrowserHistory()}>
