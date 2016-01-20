@@ -3,9 +3,11 @@ import { Navigation } from 'react-router';
 import { History } from 'react-router';
 import h from '../helpers';
 import reactMixin from 'react-mixin';
+import autobind from 'autobind-decorator';
 // StorePicker
 // This will let us make <StorePicker/>
 
+@autobind
 class StorePicker extends React.component{
 	goToStore(event) {
 		event.preventDefault();
